@@ -1,4 +1,6 @@
 package com.example.hotelmanagement.entities;
+import java.util.Date;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,13 +11,18 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "customers")
-public class CustomerEntity {
+@Table(name = "bookings")
+public class BookingsEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "customer_id")
-    private Long customerId;
-    private String name;
-    private String contact;
-    private String gender;
+    @Column(name = "booking_id")
+    private Long bookingId;
+    private Long customer_id;
+    private Long room_id;
+
+    @Column(name = "check_in_date")
+    private Date checkInDate;
+
+    @Column(name = "check_out_date")
+    private Date checkOutDate;
 }

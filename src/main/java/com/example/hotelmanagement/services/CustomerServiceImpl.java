@@ -25,7 +25,7 @@ public class CustomerServiceImpl implements CustomerService {
         customerEntity.setContact(customer.getContact());
         customerEntity.setGender(customer.getGender());
         customerRepo.save(customerEntity);
-        return "Room created successfully";
+        return "Account created successfully";
     }
     @Override
     public List<Customer> readAllCustomers(){
