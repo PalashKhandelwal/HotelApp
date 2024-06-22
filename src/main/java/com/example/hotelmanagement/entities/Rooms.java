@@ -10,5 +10,5 @@ import lombok.NoArgsConstructor;
 public class Rooms {
     private Long roomId;
     private String roomType;
-    private boolean isAvailable;
+    private boolean isBooked;
 }

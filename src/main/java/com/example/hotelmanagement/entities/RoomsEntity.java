@@ -12,5 +12,5 @@ public class RoomsEntity {
     @Id
     private Long roomId;
     private String roomType;
-    private boolean isAvailable;
+    private boolean isBooked;
 }

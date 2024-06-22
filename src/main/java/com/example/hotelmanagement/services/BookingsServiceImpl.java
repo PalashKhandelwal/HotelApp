@@ -4,13 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.hotelmanagement.entities.Bookings;
-import com.example.hotelmanagement.entities.BookingsEntity;
-import com.example.hotelmanagement.entities.CustomerEntity;
-import com.example.hotelmanagement.entities.RoomsEntity;
+import com.example.hotelmanagement.entities.BookingsEntity; 
 import com.example.hotelmanagement.repositories.BookingsRepository;
 import com.example.hotelmanagement.repositories.CustomerRepository;
 import com.example.hotelmanagement.repositories.RoomsRepository;
-import java.util.*;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Optional;
 
 @Service
 public class BookingsServiceImpl implements BookingsService {
@@ -61,9 +61,14 @@ public class BookingsServiceImpl implements BookingsService {
     }
     @Override
     public boolean deleteBooking(Long bookingId){
-        BookingsEntity book = bookingRepo.findById(bookingId).get();
+        Optional<BookingsEntity> bookingEnt = bookingRepo.findById(bookingId);
+        if(bookingEnt.isPresent()){
+            BookingsEntity book = bookingEnt.get();
             bookingRepo.delete(book);
             return true;
+        }else{
+            return false;
+        }
     }
 }
 
