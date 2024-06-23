@@ -11,4 +11,5 @@ public class Rooms {
     private Long roomId;
     private String roomType;
     private boolean isBooked;
+    private int price;
 }

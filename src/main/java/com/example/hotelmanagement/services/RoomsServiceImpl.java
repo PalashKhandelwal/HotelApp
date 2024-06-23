@@ -21,6 +21,7 @@ public class RoomsServiceImpl implements RoomsService {
         roomsEntity.setRoomId(rooms.getRoomId());
         roomsEntity.setRoomType(rooms.getRoomType());
         roomsEntity.setBooked(rooms.isBooked());
+        roomsEntity.setPrice(rooms.getPrice());
         roomsRepo.save(roomsEntity);
         return "Room created";
     }
@@ -34,6 +35,7 @@ public class RoomsServiceImpl implements RoomsService {
             r.setRoomId(rm.getRoomId());
             r.setRoomType(rm.getRoomType());
             r.setBooked(rm.isBooked());
+            r.setPrice(rm.getPrice());
             room.add(r);
         }
         return room;
@@ -49,8 +51,9 @@ public class RoomsServiceImpl implements RoomsService {
             return room;
         }else{
             room.setRoomId(null);
-            room.setBooked(false);
             room.setRoomType(null);
+            room.setBooked(false);
+            room.setPrice(0);
             return room;
         }
     }

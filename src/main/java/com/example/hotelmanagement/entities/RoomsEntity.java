@@ -13,4 +13,5 @@ public class RoomsEntity {
     private Long roomId;
     private String roomType;
     private boolean isBooked;
+    private int price;
 }
