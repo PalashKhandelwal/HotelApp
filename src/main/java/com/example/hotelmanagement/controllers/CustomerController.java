@@ -23,6 +23,11 @@ public class CustomerController {
         return customerService.readAllCustomers();
     }
     
+    @GetMapping("getCustomerByEmail/{email}")
+    public Customer readCustomer(@PathVariable String email){
+        return customerService.readCustomerByEmail(email);
+    }
+
     @PostMapping("createCustomer")
     public String createCustomer(@RequestBody Customer customer){
         return customerService.createCustomer(customer);

@@ -50,11 +50,7 @@ public class RoomsServiceImpl implements RoomsService {
             BeanUtils.copyProperties(roomE, room);
             return room;
         }else{
-            room.setRoomId(null);
-            room.setRoomType(null);
-            room.setBooked(false);
-            room.setPrice(0);
-            return room;
+            return null;
         }
     }
 

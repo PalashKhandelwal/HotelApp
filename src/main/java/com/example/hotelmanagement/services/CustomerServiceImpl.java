@@ -24,6 +24,8 @@ public class CustomerServiceImpl implements CustomerService {
         customerEntity.setName(customer.getName());
         customerEntity.setContact(customer.getContact());
         customerEntity.setGender(customer.getGender());
+        customerEntity.setEmail(customer.getEmail());
+        customerEntity.setPassword(customer.getPassword());
         customerRepo.save(customerEntity);
         return "Account created successfully";
     }
@@ -37,6 +39,8 @@ public class CustomerServiceImpl implements CustomerService {
             cust.setName(c.getName());
             cust.setContact(c.getContact());
             cust.setGender(c.getGender());
+            cust.setEmail(c.getEmail());
+            cust.setPassword(c.getPassword());
             customer.add(cust);
         }
         return customer;
@@ -72,10 +76,19 @@ public class CustomerServiceImpl implements CustomerService {
             BeanUtils.copyProperties(customer, cust);
             return customer;
        }else{
-            customer.setName(null);
-            customer.setContact(null);
-            customer.setGender(null);
-            return customer;
+            return null;
        }
+    }
+
+    @Override
+    public  Customer readCustomerByEmail(String email){
+        Optional<CustomerEntity> custOpt = customerRepo.findByEmail(email);
+        Customer customer = new Customer();
+        if (custOpt.isPresent()) {
+            BeanUtils.copyProperties(custOpt.get(), customer);
+            return customer;
+        } else {
+            return null;  // Return null or throw an exception if not found
+        }
     }
 }

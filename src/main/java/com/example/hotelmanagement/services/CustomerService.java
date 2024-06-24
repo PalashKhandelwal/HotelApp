@@ -9,4 +9,5 @@ public interface CustomerService{
     boolean deleteCustomer(Long id);
     String updateCustomer(Long id, Customer customer);
     Customer readCustomer(Long id);
+    Customer readCustomerByEmail(String email);
 } 
