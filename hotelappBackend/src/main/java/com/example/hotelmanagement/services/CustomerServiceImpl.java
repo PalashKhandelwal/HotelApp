@@ -6,12 +6,13 @@ import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.example.hotelmanagement.entities.Customer;
 import com.example.hotelmanagement.repositories.CustomerRepository;
 import com.example.hotelmanagement.entities.CustomerEntity;
-
 @Service
 public class CustomerServiceImpl implements CustomerService {
 
@@ -19,16 +20,23 @@ public class CustomerServiceImpl implements CustomerService {
     private CustomerRepository customerRepo;
 
     @Override
-    public String createCustomer(Customer customer){
+    public ResponseEntity<String> createCustomer(Customer customer) {
         CustomerEntity customerEntity = new CustomerEntity();
         customerEntity.setName(customer.getName());
         customerEntity.setContact(customer.getContact());
         customerEntity.setGender(customer.getGender());
         customerEntity.setEmail(customer.getEmail());
         customerEntity.setPassword(customer.getPassword());
-        customerRepo.save(customerEntity);
-        return "Account created successfully";
-    }
+
+        Optional<CustomerEntity> custOpt = customerRepo.findByEmail(customer.getEmail());
+
+        if (custOpt.isPresent()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Email already exists!");
+        } else {
+            customerRepo.save(customerEntity);
+            return ResponseEntity.status(HttpStatus.CREATED).body("Account created successfully");
+        }
+}
     @Override
     public List<Customer> readAllCustomers(){
         List<CustomerEntity> custEntity = customerRepo.findAll();
