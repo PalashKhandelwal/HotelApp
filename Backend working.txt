@@ -1,0 +1,12 @@
+Backend information: 
+
+Folders
+--------
+
+1.) Controllers : Currently there are 3 controller classes - BookingsController, CustomerController and RoomsController.
+
+2.) Entities : Entities consist of 3 Dto's and 3 Entities classes for Bookings, Customer and Rooms.
+
+3.) Repositories : This folder consist of 3 Repositories for Bookings, Customer and Rooms
+
+4.) Services : This folder consists of 3 Interfaces and there 3 implementation classes.
